@@ -1,0 +1,41 @@
+.Card {
+    grid-area: Card;
+    max-width: 382px;
+    min-width: 382px;
+    max-height: 241px;
+    min-height: 241px;
+    padding: 0rem;
+    border-radius: 10px;
+    background-color: lightblue;  
+  }
+
+  .span {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 20px;
+    font-size: 12px;
+  }
+
+  .cardHolder {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 27px;
+    margin-top: 2px;
+    font-size: 18px;
+  }
+
+  .cardNr {
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    word-spacing: 9px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+
+  .cardChip {
+    margin-top: 18px;
+    margin-left: 16px;
+  }

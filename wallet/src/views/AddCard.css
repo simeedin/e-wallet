@@ -1,0 +1,16 @@
+
+
+
+
+.AddCard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: auto;
+    gap: 0.2rem; */
+}
+
