@@ -1,0 +1,17 @@
+.CardStack {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardWrapper {
+    display: flex;
+
+}
+
+.removeBtn {
+    margin-top: 1rem;
+}
+
+.CardStack .cardWrapper:not(:last-child) {
+    margin-bottom: -12rem;
+}

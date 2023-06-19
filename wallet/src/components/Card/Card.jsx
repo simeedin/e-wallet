@@ -1,17 +1,42 @@
 import './Card.css'
 import chipLight from '../../assets/chip-light.svg';
+import bitcoin from '../../assets/vendor-bitcoin.svg';
+import blockchain from '../../assets/vendor-blockchain.svg';
+import evil from '../../assets/vendor-evil.svg';
+import ninja from '../../assets/vendor-ninja.svg';
 
 function Card(props) {
-    const {vendor, cardNr, cardHolder, validDate} = props;
+    const {vendor, cardNr, cardHolder, validDate, getActiveCard, removeCard, activeCard} = props;
+    let currentVendor = '';
+    if(vendor == bitcoin) {
+        currentVendor = 'bitcoin'
+    } else if(vendor == blockchain) {
+        currentVendor = 'blockchain'
+    } else if(vendor == evil) {
+        currentVendor = 'evil'
+    } else if(vendor == ninja) {
+        currentVendor = 'ninja'
+    } else {
+        currentVendor = 'Card'
+    }
+    
+    
     return(
-       <div className='Card'>
-            <div className='chipAndVendor'>
-                <img className='cardChip' src={chipLight} alt="chip" /> <span><img className='vendor' src={vendor} alt="" /></span>
+        <div className='cardWrapper'>
+            <div onClick={getActiveCard}>    
+                <div className={currentVendor}>
+                    <div className='chipAndVendor'>
+                    <img className='cardChip' src={chipLight} alt="chip" /> <span><img className='vendor' src={vendor} alt="" /></span>
+                    </div>
+                    <p className='cardNr'>{cardNr}</p>
+                    <p className='span'>CARDHOLDER <span>VALID THRU</span></p>
+                    <p className='cardHolder'>{cardHolder} <span>{validDate}</span></p>
+                    
+                </div> 
             </div>
-            <p className='cardNr'>{cardNr}</p>
-            <p className='span'>CARDHOLDER <span>VALID THRU</span></p>
-            <p className='cardHolder'>{cardHolder} <span>{validDate}</span></p>
-               
+            <div>
+                {currentVendor !== 'Card' && !activeCard ? <button className='removeBtn' onClick={removeCard} >DELETE</button> : null}
+            </div>
        </div> 
     )
 } 

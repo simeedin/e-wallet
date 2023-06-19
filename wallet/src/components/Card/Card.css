@@ -1,12 +1,66 @@
 .Card {
-    grid-area: Card;
     max-width: 382px;
     min-width: 382px;
     max-height: 241px;
     min-height: 241px;
     padding: 0rem;
     border-radius: 10px;
-    background-color: lightblue;  
+    background-color: #D0D0D0;  
+  }
+
+  .ninja {
+    max-width: 382px;
+    min-width: 382px;
+    max-height: 241px;
+    min-height: 241px;
+    padding: 0rem;
+    border-radius: 10px;
+    background-color: black;
+    color: #FFFFFF;
+  }
+
+  .evil {
+    max-width: 382px;
+    min-width: 382px;
+    max-height: 241px;
+    min-height: 241px;
+    padding: 0rem;
+    border-radius: 10px;
+    background-color: #F33355;
+    color: #FFFFFF;
+  }
+
+  .blockchain {
+    max-width: 382px;
+    min-width: 382px;
+    max-height: 241px;
+    min-height: 241px;
+    padding: 0rem;
+    border-radius: 10px;
+    background-color: #8B58F9;
+    color: black;
+  }
+
+  .bitcoin {
+    max-width: 382px;
+    min-width: 382px;
+    max-height: 241px;
+    min-height: 241px;
+    padding: 0rem;
+    border-radius: 10px;
+    background-color: #FFAE34;
+    color: black;
+  }
+
+  .chipAndVendor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .vendor {
+    margin-top: 1.5rem;
+    margin-right: 1.2rem;
   }
 
   .span {
@@ -36,6 +90,19 @@
   }
 
   .cardChip {
-    margin-top: 18px;
+    margin-top: 10px;
     margin-left: 16px;
   }
+
+ .removeBtn {
+  background-color: lightgray;
+  border-radius: 5px;
+  border-width: 0;
+  color: red;
+  font-size: 8px;
+  margin-left: 2px;
+  
+
+ }
+
+ 

@@ -12,8 +12,27 @@
   grid-template-columns: 100%;
   grid-auto-rows: auto;
   gap: 0.2rem;
-  grid-template-areas: 
-  "Card";
+
+}
+
+.addNewBtn {
+  /* margin-right: 4.6rem; */
+  max-width: 382px;
+  margin-top: 3rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  word-spacing: 5px;
+  font-size: 22px;
+  
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  max-width: 382px;
+  min-width: 382px;
 }
 
 @media  screen and (min-width: 600px) {

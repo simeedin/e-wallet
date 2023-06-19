@@ -1,19 +1,40 @@
 
 import './App.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
 import CardStack from './components/CardStack/CardStack';
 import Card from './components/Card/Card';
 function App() {
-  // const state = useLocation();
-  // console.log(state);
+  const [allCards, setAllCards] = useState([]);
+  const [activeCard, setActiveCard] = useState('');
   const navigate = useNavigate();
   
-  // let getCard = state.state.cards;
-  // let arr = [getCard];
-  // const displayCards = arr.map((card) => {
-  //   return <Card vendor={card.vendor} cardNr={card.cardNr} cardHolder={card.cardHolder} validDate={card.validDate} key={card.id}/>
-  // });
-  // console.log(displayCards);
+  useEffect(() => {
+    const getCards = localStorage.getItem('cards');
+    if(getCards !== null) {
+      const cards = JSON.parse(getCards);
+      setAllCards(cards);
+    }
+  }, []);
+
+  const displayCards = allCards.map((card) => {
+    if(card !== activeCard)
+    return  <Card vendor={card.vendor} cardNr={card.cardNr} cardHolder={card.cardHolder} validDate={card.validDate} key={card.id} getActiveCard={() => getActiveCard(card)} removeCard={() => removeCard(card)}/>
+  });
+
+  function getActiveCard(card) {
+    setActiveCard(card);
+  }
+
+  function removeCard(card) {
+    const chosenCard = card.id;
+    const updateCards = allCards.filter((card) => card.id !== chosenCard);
+    localStorage.setItem('cards', JSON.stringify(updateCards));
+    setAllCards(updateCards);
+  }
+
+  
   
   
   function handleClick() {
@@ -21,17 +42,28 @@ function App() {
   }
   return (
     <div className='App'>
-        <Card
-          cardNr= 'XXXX XXXX XXXX XXXX'
-          cardHolder= 'FIRSTNAME LASTNAME'
-          validDate= 'MM/YY'
+        <Header
+          headText='E-WALLET'
+          headSubText={activeCard ? 'ACTIVE CARD' : null}
         />
+        
+        {activeCard ?
+          <Card 
+            vendor={activeCard.vendor}
+            cardNr={activeCard.cardNr}
+            cardHolder={activeCard.cardHolder}
+            validDate={activeCard.validDate}
+            activeCard={activeCard}
+         /> 
 
-        <CardStack/>
+         : <Card cardNr='NO ACTIVE CARD'/>
+        }
+        {displayCards.length > 0 ? <h2>MY WALLET</h2> : <h2>WALLET IS EMPTY</h2>}
+        <CardStack displayCards={displayCards}/>
 
         
 
-        <button onClick={handleClick}>ADD NEW CARD</button>
+        <button className='addNewBtn' onClick={handleClick}>ADD A NEW CARD</button>
     </div>
   )
 }

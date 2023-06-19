@@ -1,9 +1,8 @@
 import './AddCard.css';
 import CardForm from "../components/CardForm/CardForm";
-import Card from '../components/Card/Card';
-import CardStack from '../components/CardStack/CardStack';
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Header from '../components/Header/Header';
+import { useState, useEffect } from "react";
+import {useNavigate } from "react-router-dom";
 import {v4 as uuid} from 'uuid';
 
 
@@ -11,7 +10,16 @@ import {v4 as uuid} from 'uuid';
 function AddCard() {
     const navigate = useNavigate();
     
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState(() => {
+        const checkStorage = localStorage.getItem('cards');
+        const storedCards = JSON.parse(checkStorage);
+        return storedCards || [];
+    });
+
+    useEffect(() => {
+
+        localStorage.setItem('cards', JSON.stringify(cards));
+    }, [cards]);
     
     function newCard(card) {
         
@@ -29,26 +37,18 @@ function AddCard() {
         });
     }
 
-    
-
-    const displayCards = cards.map((card) => {
-        return <Card vendor={card.vendor} cardNr={card.cardNr} cardHolder={card.cardHolder} validDate={card.validDate} key={card.id}/>
-    });
 
     
     
 
     return (
         <div className="AddCard">
-            {/* <Card
-                vendor= ''
-                cardNr= 'XXXX XXXX XXXX XXXX'
-                cardHolder= 'FIRSTNAME LASTNAME'
-                validDate= 'YY/MM'
-            /> */}
+            <Header
+                headText='ADD A NEW BANK CARD'
+                headSubText='NEW CARD'
+            />
             <CardForm newCard={newCard}/>
-            <button onClick={() => {navigate('/')}}></button>
-            <CardStack displayCards={displayCards}/>
+            <button className='backToWallet' onClick={() => {navigate('/')}}>BACK TO WALLET</button>
         </div>
     )
 }
