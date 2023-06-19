@@ -8,11 +8,30 @@
 }
 
 input {
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
     padding: 7px;
     border-radius: 8px;
 }
 
 p {
     margin-bottom: 0;
+}
+
+select {
+    margin-bottom: 1rem;
+    padding: 7px;
+    border-radius: 8px;
+    border-width: 2px;
+}
+
+.submitBtn {
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    word-spacing: 5px;
+    font-size: 22px;
+    color: green;
 }

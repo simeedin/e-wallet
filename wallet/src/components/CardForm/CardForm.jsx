@@ -1,33 +1,31 @@
 import './CardForm.css';
-import { useState, useEffect } from 'react';
 import bitcoin from '../../assets/vendor-bitcoin.svg';
 import blockchain from '../../assets/vendor-blockchain.svg';
 import evil from '../../assets/vendor-evil.svg';
 import ninja from '../../assets/vendor-ninja.svg';
 import Card from "../Card/Card";
-// import {v4 as uuid} from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 function CardForm(props) {
-    const {newCard} = props;
-    const [card, setCard] = useState(() => {
-        const checkStorage = localStorage.getItem('card');
-        const storedCards = JSON.parse(checkStorage);
-        return storedCards || {vendor: '', cardNr: '', cardHolder: '', validDate: ''};
-    });
+    const {card, setCard} = props;
     
-    useEffect(() => {
-        localStorage.setItem('cards', JSON.stringify(card));
-    }, [card]);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        newCard(card);
-    }
-
     const handleChange = (event) => {
-        setCard({...card, [event.target.name]: event.target.value,});
+        setCard({...card, [event.target.name]: event.target.value, id: uuid()});
     }
-
+    
+    const handleSubmit = (event) => { 
+        event.preventDefault();
+        setCard({vendor: '', cardNr: '', cardHolder: '', validDate: ''})
+        const getCards = localStorage.getItem('cards');
+        if(getCards) {
+            const cards = JSON.parse(getCards);
+            cards.push(card);
+            localStorage.setItem('cards', JSON.stringify(cards));
+        } else {
+            localStorage.setItem('cards', JSON.stringify([card]))
+        }
+        
+    }
     return (
         <div className='CardForm'>
             <Card
@@ -35,6 +33,7 @@ function CardForm(props) {
                 cardNr={card.cardNr}
                 cardHolder={card.cardHolder}
                 validDate={card.validDate}
+                removeBtn='hideRemoveBtn'
             />
             <form className='form' onSubmit={handleSubmit}>
                 <p>Card number</p>
@@ -69,7 +68,7 @@ function CardForm(props) {
                     <option value={evil}>Evil Corp</option>
                     <option value={ninja}>Ninja Bank</option>
                 </select>
-                <button type='submit'>ADD CARD</button>
+                <button className='submitBtn' type='submit'>ADD CARD</button>
             </form>
         </div>
     )

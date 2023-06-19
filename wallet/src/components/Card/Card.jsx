@@ -6,7 +6,7 @@ import evil from '../../assets/vendor-evil.svg';
 import ninja from '../../assets/vendor-ninja.svg';
 
 function Card(props) {
-    const {vendor, cardNr, cardHolder, validDate, getActiveCard, removeCard, activeCard} = props;
+    const {vendor, cardNr, cardHolder, validDate, getActiveCard, removeCard, activeCard, removeBtn} = props;
     let currentVendor = '';
     if(vendor == bitcoin) {
         currentVendor = 'bitcoin'
@@ -29,13 +29,13 @@ function Card(props) {
                     <img className='cardChip' src={chipLight} alt="chip" /> <span><img className='vendor' src={vendor} alt="" /></span>
                     </div>
                     <p className='cardNr'>{cardNr}</p>
-                    <p className='span'>CARDHOLDER <span>VALID THRU</span></p>
-                    <p className='cardHolder'>{cardHolder} <span>{validDate}</span></p>
+                    <p className='cardHolder'>CARDHOLDER <span>VALID THRU</span></p>
+                    <p className='name'>{cardHolder} <span className='validDate'>{validDate}</span></p>
                     
                 </div> 
             </div>
             <div>
-                {currentVendor !== 'Card' && !activeCard ? <button className='removeBtn' onClick={removeCard} >DELETE</button> : null}
+                {currentVendor !== 'Card' && !activeCard ? <button className={removeBtn} onClick={removeCard} >DELETE</button> : null}
             </div>
        </div> 
     )

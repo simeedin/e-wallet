@@ -20,7 +20,7 @@ function App() {
 
   const displayCards = allCards.map((card) => {
     if(card !== activeCard)
-    return  <Card vendor={card.vendor} cardNr={card.cardNr} cardHolder={card.cardHolder} validDate={card.validDate} key={card.id} getActiveCard={() => getActiveCard(card)} removeCard={() => removeCard(card)}/>
+    return  <Card vendor={card.vendor} cardNr={card.cardNr} cardHolder={card.cardHolder} validDate={card.validDate} key={card.id} getActiveCard={() => getActiveCard(card)} removeCard={() => removeCard(card)} removeBtn='showRemoveBtn'/>
   });
 
   function getActiveCard(card) {
